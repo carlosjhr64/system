@@ -28,7 +28,6 @@ func New(command string) *Command {
 func (cmd *Command) Output(a ...interface{}) string {
   if len(a) != cmd.arity { panic("Wrong number of arguments.") }
   c := strings.Fields(fmt.Sprintf(cmd.command, a...))
-  fmt.Println(c)
   out, err := exec.Command(c[0], c[1:]...).Output()
   if err != nil { Oops(err) }
   return string(out)
